@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Allieh Catering</title>
+<meta name="description" content="Cuisine ouest-africaine de Côte d'Ivoire, préparée sur commande. Commandez par WhatsApp ou par téléphone auprès de Mélissa.">
+<meta name="theme-color" content="#1f0f08">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..900,0..100;1,9..144,400..900,0..100&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --braise:#1f0f08; --cacao:#2e170c; --ecorce:#44240f;
+  --creme:#faeeda; --sable:#dcc5a4;
+  --palme:#f0a93a; --tomate:#d2401f; --feuille:#2f8f57; --wa:#25d366;
+  --disp:"Fraunces",Georgia,serif; --txt:"Poppins",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--braise);color:var(--creme);font-family:var(--txt);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;padding-bottom:92px;overflow-x:hidden}
+img,video{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--palme);outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:var(--disp);font-variation-settings:"SOFT" 100;line-height:1.02;letter-spacing:-.015em}
+h2{font-size:clamp(2.3rem,8.5vw,4.4rem);font-weight:800}
+.lead{color:var(--sable);max-width:34ch;margin-top:14px;font-size:1.05rem}
+
+/* boutons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 26px;border-radius:999px;border:0;text-decoration:none;font-weight:600;font-size:1.05rem;transition:transform .15s ease,background .15s ease}
+.btn:active{transform:scale(.97)}
+.btn-wa{background:var(--wa);color:#06240f}
+.btn-wa:hover{background:#3be07a}
+.btn-ghost{background:rgba(250,238,218,.12);color:var(--creme);box-shadow:inset 0 0 0 1.5px rgba(250,238,218,.45);backdrop-filter:blur(6px)}
+.btn svg{width:24px;height:24px;flex:none}
+
+/* hero */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;isolation:isolate}
+.hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(31,15,8,.72) 0%,rgba(31,15,8,.05) 26%,rgba(31,15,8,.1) 42%,rgba(31,15,8,.9) 80%,var(--braise) 100%)}
+.hero-top{position:absolute;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:18px 20px}
+.hero-top img{width:150px;height:auto}
+.hero-top a{font-weight:600;text-decoration:none;font-size:.95rem;padding:10px 16px;border-radius:999px;background:rgba(31,15,8,.55);backdrop-filter:blur(6px)}
+.hero-in{padding:0 20px 118px;max-width:1120px;width:100%;margin:0 auto}
+.hero h1{font-size:clamp(3rem,13.5vw,8.2rem);font-weight:900;font-style:italic;letter-spacing:-.03em;line-height:.9}
+.hero h1 span{display:block}
+.hero h1 span:last-child{color:var(--palme)}
+.hero p{margin:20px 0 26px;font-size:1.1rem;max-width:30ch;color:var(--creme)}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px}
+.flag{display:flex;width:66px;height:5px;margin-bottom:18px;border-radius:3px;overflow:hidden}
+.flag i{flex:1}.flag i:nth-child(1){background:#f77f00}.flag i:nth-child(2){background:#fff}.flag i:nth-child(3){background:#009e60}
+@media (prefers-reduced-motion:no-preference){
+  .hero h1 span,.hero p,.hero .cta-row,.hero .flag{opacity:0;transform:translateY(26px);animation:up .8s cubic-bezier(.2,.8,.2,1) forwards}
+  .hero .flag{animation-delay:.15s}.hero h1 span:nth-child(1){animation-delay:.25s}.hero h1 span:nth-child(2){animation-delay:.4s}
+  .hero p{animation-delay:.6s}.hero .cta-row{animation-delay:.75s}
+}
+@keyframes up{to{opacity:1;transform:none}}
+
+/* bandeau défilant */
+.ruban{background:var(--palme);color:var(--braise);overflow:hidden;white-space:nowrap;padding:14px 0;font-family:var(--disp);font-weight:800;font-style:italic;font-size:1.5rem;transform:rotate(-1.2deg) scale(1.03);margin:10px 0 0}
+.ruban div{display:inline-block;padding-left:0}
+.ruban span{margin:0 18px}
+.ruban span::after{content:"✺";margin-left:36px;font-style:normal;color:var(--tomate)}
+@media (prefers-reduced-motion:no-preference){.ruban div{animation:defile 28s linear infinite}}
+@keyframes defile{to{transform:translateX(-50%)}}
+
+section{padding:84px 0 0}
+
+/* plats phares */
+.phares{display:grid;gap:22px;margin-top:34px}
+.phare{position:relative;border-radius:28px;overflow:hidden;background:var(--cacao);min-height:440px;display:flex;flex-direction:column;justify-content:flex-end;isolation:isolate}
+.phare>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform 1.2s ease}
+.phare:hover>img{transform:scale(1.05)}
+.phare::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(31,15,8,0) 35%,rgba(31,15,8,.93) 82%)}
+.phare-in{padding:22px}
+.phare h3{font-size:2.2rem;font-weight:800}
+.phare p{color:var(--sable);margin:6px 0 16px;font-size:.98rem}
+.phare-bas{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.prix{font-family:var(--disp);font-weight:800;font-size:1.7rem;color:var(--palme);white-space:nowrap}
+.prix small{font-family:var(--txt);font-weight:500;font-size:.85rem;color:var(--sable)}
+.add{min-height:48px;padding:0 20px;border-radius:999px;border:0;background:var(--creme);color:var(--braise);font-weight:600}
+.add:hover{background:#fff}
+.phare.rond{background:radial-gradient(circle at 50% 34%,var(--ecorce),var(--cacao) 70%)}
+.phare.rond::after{display:none}
+.assiette{width:78%;max-width:340px;aspect-ratio:1;border-radius:50%;margin:28px auto 4px;object-fit:cover;box-shadow:0 26px 50px rgba(0,0,0,.55),0 0 0 4px var(--palme);position:static!important;height:auto!important}
+@media (prefers-reduced-motion:no-preference){.assiette{animation:tourne 70s linear infinite}}
+.phare.rond:hover>img{transform:none}
+@keyframes tourne{to{rotate:360deg}}
+@media(min-width:760px){.phares{grid-template-columns:1.25fr 1fr}.phare.grand{grid-row:span 2;min-height:600px}}
+
+/* vidéos */
+.reels{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 20px 20px;margin:30px -20px 0;scrollbar-width:none}
+.reels::-webkit-scrollbar{display:none}
+.reel{position:relative;flex:0 0 68%;max-width:290px;aspect-ratio:9/16;border-radius:24px;overflow:hidden;scroll-snap-align:center;background:var(--cacao);border:0;padding:0}
+.reel video{width:100%;height:100%;object-fit:cover}
+.reel .play{position:absolute;inset:auto 0 18px 0;margin:auto;width:60px;height:60px;border-radius:50%;background:rgba(31,15,8,.7);display:grid;place-items:center;transition:opacity .2s}
+.reel .play svg{width:24px;height:24px;margin-left:3px}
+.reel.on .play{opacity:0}
+
+/* carte */
+.carte{margin-top:34px;display:grid;gap:44px}
+.groupe h3{font-size:1.9rem;font-weight:800;display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding-bottom:12px;border-bottom:2px solid var(--palme)}
+.groupe h3 em{font-family:var(--txt);font-style:normal;font-weight:600;font-size:1rem;color:var(--palme);white-space:nowrap}
+.plat{display:grid;grid-template-columns:1fr auto;gap:6px 14px;align-items:center;padding:16px 0;border-bottom:1px solid rgba(250,238,218,.14)}
+.plat b{font-weight:600;font-size:1.1rem}
+.plat span{grid-column:1;color:var(--sable);font-size:.92rem;line-height:1.4}
+.plat .p{color:var(--palme);font-weight:600;font-size:.92rem}
+.qte{grid-column:2;grid-row:1/span 3;display:flex;align-items:center;gap:4px}
+.qte button{width:46px;height:46px;border-radius:50%;border:0;background:rgba(250,238,218,.12);font-size:1.5rem;line-height:1;display:grid;place-items:center}
+.qte button.plus{background:var(--palme);color:var(--braise);font-weight:600}
+.qte output{min-width:26px;text-align:center;font-weight:700;font-size:1.1rem}
+.qte.vide .moins,.qte.vide output{display:none}
+@media(min-width:860px){.carte{grid-template-columns:1fr 1fr;column-gap:64px}}
+
+/* étapes */
+.etapes{counter-reset:e;display:grid;gap:18px;margin-top:34px;padding:0;list-style:none}
+.etapes li{counter-increment:e;background:var(--cacao);border-radius:24px;padding:24px 24px 26px;position:relative}
+.etapes li::before{content:counter(e);font-family:var(--disp);font-weight:900;font-style:italic;font-size:3.4rem;line-height:1;color:var(--palme);display:block;margin-bottom:8px}
+.etapes b{font-family:var(--disp);font-size:1.5rem;font-weight:800;display:block;margin-bottom:6px}
+.etapes span{color:var(--sable)}
+@media(min-width:760px){.etapes{grid-template-columns:repeat(3,1fr)}}
+.infos{margin-top:26px;display:grid;gap:10px;color:var(--sable);padding:0;list-style:none}
+.infos li{padding-left:26px;position:relative}
+.infos li::before{content:"";position:absolute;left:0;top:.55em;width:12px;height:12px;border-radius:50%;background:var(--tomate)}
+
+/* final */
+.final{margin-top:84px;padding:76px 0 60px;background:var(--tomate);color:var(--creme);text-align:center;border-radius:36px 36px 0 0}
+.final h2{font-style:italic;font-weight:900;font-size:clamp(2.8rem,12vw,6rem);line-height:.92}
+.final p{margin:18px auto 26px;max-width:30ch}
+.final .btn-wa{background:var(--braise);color:var(--creme)}
+.final .tel{display:block;margin-top:22px;font-family:var(--disp);font-weight:900;font-size:clamp(2.2rem,9vw,3.6rem);text-decoration:none;letter-spacing:-.01em}
+.final small{display:block;margin-top:6px;opacity:.85}
+footer{background:var(--tomate);text-align:center;padding:0 20px 40px;font-size:.85rem;color:rgba(250,238,218,.8)}
+
+/* barre de commande */
+.barre{position:fixed;left:10px;right:10px;bottom:10px;z-index:20;max-width:720px;margin:0 auto;background:var(--creme);color:var(--braise);border-radius:22px;padding:10px 10px 10px 18px;display:flex;align-items:center;gap:12px;box-shadow:0 18px 44px rgba(0,0,0,.55)}
+.barre .resume{flex:1;min-width:0;line-height:1.25}
+.barre .resume b{display:block;font-size:1rem;white-space:nowrap}
+.barre .resume span{font-size:.82rem;color:#6b4a33;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.barre .btn{min-height:52px;padding:0 16px;font-size:.93rem;white-space:nowrap}
+.barre.bump{animation:bump .35s ease}
+@keyframes bump{40%{transform:translateY(-6px) scale(1.015)}}
+.vider{background:none;border:0;text-decoration:underline;font-size:.8rem;color:#6b4a33;padding:6px 0}
+
+.rev{opacity:1}
+@media (prefers-reduced-motion:no-preference){
+  .js .rev{opacity:0;transform:translateY(34px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+  .js .rev.vu{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <video autoplay muted loop playsinline poster="media/hero.jpg" aria-hidden="true">
+    <source src="media/hero.mp4" type="video/mp4">
+  </video>
+  <div class="hero-top">
+    <img src="media/logo.png" alt="Allieh Catering" width="700" height="232">
+    <a href="#carte">La carte</a>
+  </div>
+  <div class="hero-in">
+    <div class="flag" aria-hidden="true"><i></i><i></i><i></i></div>
+    <h1><span>Le goût du pays,</span><span>jusque chez vous.</span></h1>
+    <p>Cuisine de Côte d'Ivoire, préparée sur commande par Mélissa. À partir de 10&nbsp;€ par personne.</p>
+    <div class="cta-row">
+      <a class="btn btn-wa" data-wa href="https://wa.me/33619015119">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21l1.6-4.7A8.5 8.5 0 1 1 8 19.6L3 21z"/><path d="M9 8.5c0 3.5 3 6.500 6.500 6.500l1-1.800-2.200-1-1 1c-1-.500-2-1.500-2.500-2.500l1-1-1-2.200L9 8.500z" fill="currentColor" stroke="none"/></svg>
+        Commander sur WhatsApp
+      </a>
+      <a class="btn btn-ghost" href="#carte">Voir la carte</a>
+    </div>
+  </div>
+</header>
+
+<div class="ruban" aria-hidden="true"><div id="ruban"></div></div>
+
+<main>
+<section class="wrap">
+  <h2 class="rev">Ça sort du feu, ça arrive chez vous.</h2>
+  <p class="lead rev">Les plats qu'on nous redemande. Ajoutez-les à votre commande en un geste.</p>
+  <div class="phares">
+    <article class="phare grand rev">
+      <img src="media/tchep.jpg" alt="Assiette de djolof au poisson, carotte, aubergine et basilic" loading="lazy">
+      <div class="phare-in">
+        <h3>Djolof, riz gras, tchep</h3>
+        <p>Poisson, poulet ou viande, mix de légumes, aubergines, choux.</p>
+        <div class="phare-bas"><span class="prix">15 € <small>/ pers</small></span><button class="add" data-add="djolof">Ajouter</button></div>
+      </div>
+    </article>
+    <article class="phare rond rev">
+      <img class="assiette" src="media/poisson.jpg" alt="Poisson entier couvert de tomates, oignons rouges et persil" loading="lazy">
+      <div class="phare-in">
+        <h3>Poisson aux légumes</h3>
+        <p>Riz ou attiéké, sauce tomate avec ou sans piment.</p>
+        <div class="phare-bas"><span class="prix">20 €</span><button class="add" data-add="poisson">Ajouter</button></div>
+      </div>
+    </article>
+    <article class="phare rev">
+      <img src="media/sauce.jpg" alt="Plat en sauce tomate avec légumes" loading="lazy">
+      <div class="phare-in">
+        <h3>Les plats en sauce</h3>
+        <p>Gombo, graine, arachide, feuille ou pépé soup.</p>
+        <div class="phare-bas"><span class="prix">17 € <small>/ pers</small></span><a class="add btn" style="min-height:48px;font-size:1rem" href="#g-sauce">Choisir</a></div>
+      </div>
+    </article>
+    <article class="phare rev">
+      <img src="media/claclo.jpg" alt="Alloco, bananes plantain frites" loading="lazy">
+      <div class="phare-in">
+        <h3>Le claclo</h3>
+        <p>Alloco, igname, manioc, beignets de banane.</p>
+        <div class="phare-bas"><span class="prix">10 € <small>/ pers</small></span><button class="add" data-add="claclo">Ajouter</button></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="wrap">
+  <h2 class="rev">Regardez, ça donne faim.</h2>
+  <div class="reels" id="reels"></div>
+</section>
+
+<section class="wrap" id="carte">
+  <h2 class="rev">La carte</h2>
+  <p class="lead rev">Appuyez sur + pour composer votre commande. Elle part toute prête sur WhatsApp.</p>
+  <div class="carte" id="menu"></div>
+</section>
+
+<section class="wrap">
+  <h2 class="rev">Commander, c'est trois gestes.</h2>
+  <ol class="etapes">
+    <li class="rev"><b>Choisissez vos plats</b><span>Sur la carte, avec le nombre de personnes.</span></li>
+    <li class="rev"><b>Envoyez sur WhatsApp</b><span>Votre commande est déjà écrite, il reste à appuyer sur envoyer.</span></li>
+    <li class="rev"><b>Mélissa vous répond</b><span>Elle confirme la commande et la livraison avec vous.</span></li>
+  </ol>
+  <ul class="infos rev">
+    <li>Tout est préparé sur commande.</li>
+    <li>Frais de livraison en supplément.</li>
+    <li>Par téléphone ou WhatsApp : 06 19 01 51 19.</li>
+  </ul>
+</section>
+
+<section class="final">
+  <div class="wrap">
+    <h2>On vous prépare quoi ?</h2>
+    <p>Écrivez à Mélissa, elle s'occupe du reste.</p>
+    <a class="btn btn-wa" data-wa href="https://wa.me/33619015119">Commander sur WhatsApp</a>
+    <a class="tel" href="tel:+33619015119">06 19 01 51 19</a>
+    <small>Appelez Mélissa directement</small>
+  </div>
+</section>
+</main>
+<footer>Allieh Catering, cuisine ouest-africaine, Côte d'Ivoire.</footer>
+
+<div class="barre" id="barre">
+  <div class="resume"><b id="b-titre">Une envie ?</b><span id="b-detail">Écrivez à Mélissa sur WhatsApp</span></div>
+  <a class="btn btn-wa" data-wa id="b-btn" href="https://wa.me/33619015119">Commander</a>
+</div>
+
+<script>
+document.documentElement.classList.add('js');
+var WA='https://wa.me/33619015119';
+var MENU=[
+ {id:'g-sauce',t:'Les plats en sauce',prix:'17 € / pers',items:[
+  {id:'gombo',n:'Sauce Gombo',d:'Gombo, viande / poisson / poulet, huile de palme ou sans, riz.',p:17,u:'/ pers'},
+  {id:'graine',n:'Sauce Graine',d:'Graine du palmier, viande / poisson / poulet, riz.',p:17,u:'/ pers'},
+  {id:'pepe',n:'Pépé soup',d:'Gombo, poisson frais ou fumé ou viande (queue de bœuf), aubergines, riz ou attiéké.',p:17,u:'/ pers'},
+  {id:'feuille',n:'Sauce Feuille',d:'Feuille de manioc, poisson, riz.',p:17,u:'/ pers'},
+  {id:'arachide',n:'Sauce Arachide',d:'Arachide, poisson / viande / poulet, pommes de terre, carottes, riz.',p:17,u:'/ pers'}]},
+ {id:'g-grill',t:'Grillades et plats braisés',prix:'20 €',items:[
+  {id:'poisson',n:'Poisson braisé aux légumes',d:'Riz ou attiéké, sauce tomate avec ou sans piment.',p:20,u:''},
+  {id:'poulet',n:'Poulet braisé aux légumes',d:'Riz ou attiéké, sauce tomate avec ou sans piment.',p:20,u:'/ pers'}]},
+ {id:'g-spe',t:'Les spécialités',prix:'15 € / pers',items:[
+  {id:'djolof',n:'Djolof, Riz gras, Tchep',d:'Poisson / poulet ou viande, mix de légumes, aubergines, choux.',p:15,u:'/ pers'},
+  {id:'yassa',n:'Yassa',d:'Poulet ou viande, oignons, moutarde, riz.',p:15,u:'/ pers'},
+  {id:'sukuya',n:'Sukuya',d:'Viande, oignons, riz ou attiéké, piment.',p:15,u:'/ pers'}]},
+ {id:'g-frit',t:'Fritures',prix:'dès 10 € / pers',items:[
+  {id:'claclo',n:'Claclo',d:'Alloco, igname, manioc, beignets de banane.',p:10,u:'/ pers'},
+  {id:'claclo-rouge',n:'Claclo huile rouge',d:'Sauce tomate / piment.',p:13,u:'/ pers'}]},
+ {id:'g-dessert',t:'Desserts',prix:'10 €',items:[
+  {id:'degue',n:'Dèguè',d:'Yaourt au couscous de mil.',p:10,u:'le pot de 800 g'}]}
+];
+var ITEMS={},cart={};
+var menu=document.getElementById('menu');
+MENU.forEach(function(g){
+  var h='<div class="groupe rev" id="'+g.id+'"><h3>'+g.t+' <em>'+g.prix+'</em></h3>';
+  g.items.forEach(function(it){ITEMS[it.id]=it;
+    h+='<div class="plat"><b>'+it.n+'</b><span>'+it.d+'</span><span class="p">'+it.p+' € '+it.u+'</span>'+
+       '<div class="qte vide" data-q="'+it.id+'"><button class="moins" aria-label="Retirer un '+it.n+'">−</button><output>0</output><button class="plus" aria-label="Ajouter un '+it.n+'">+</button></div></div>';
+  });
+  menu.insertAdjacentHTML('beforeend',h+'</div>');
+});
+var barre=document.getElementById('barre');
+function render(bump){
+  var n=0,total=0,lines=[],names=[];
+  Object.keys(cart).forEach(function(id){var q=cart[id],it=ITEMS[id];if(!q)return;n+=q;total+=q*it.p;
+    lines.push('• '+q+' × '+it.n+' ('+it.p+' € '+(it.u||'pièce')+')');names.push(q+' × '+it.n);});
+  document.querySelectorAll('[data-q]').forEach(function(el){var q=cart[el.dataset.q]||0;el.querySelector('output').textContent=q;el.classList.toggle('vide',!q);});
+  var msg=n?('Bonjour Mélissa, je souhaite commander :\n'+lines.join('\n')+'\n\nTotal estimé : '+total+' € (hors livraison)\n\nPrécisions (viande, poisson ou poulet, piment, riz ou attiéké) : \nDate et adresse de livraison : ')
+           :'Bonjour Mélissa, je souhaite passer une commande chez Allieh Catering.';
+  var url=WA+'?text='+encodeURIComponent(msg);
+  document.querySelectorAll('[data-wa]').forEach(function(a){a.href=url;});
+  document.getElementById('b-titre').textContent=n?('Total : '+total+' €'):'Une envie ?';
+  document.getElementById('b-detail').textContent=n?names.join(', '):'Écrivez à Mélissa sur WhatsApp';
+  document.getElementById('b-btn').textContent=n?'Envoyer sur WhatsApp':'Commander';
+  if(bump){barre.classList.remove('bump');void barre.offsetWidth;barre.classList.add('bump');}
+}
+function add(id,d){cart[id]=Math.max(0,(cart[id]||0)+d);render(d>0);}
+document.addEventListener('click',function(e){
+  var b=e.target.closest('button');if(!b)return;
+  if(b.dataset.add){add(b.dataset.add,1);b.textContent='Ajouté ✓';setTimeout(function(){b.textContent='Ajouter';},1400);}
+  var q=b.closest('[data-q]');if(q)add(q.dataset.q,b.classList.contains('plus')?1:-1);
+});
+render(false);
+
+/* bandeau */
+var mots=['Sauce graine','Attiéké','Alloco','Tchep','Yassa','Sauce gombo','Sukuya','Dèguè','Pépé soup','Poisson braisé'];
+var r=mots.map(function(m){return '<span>'+m+'</span>';}).join('');
+document.getElementById('ruban').innerHTML=r+r;
+
+/* vidéos */
+var reels=document.getElementById('reels');
+[['tchep','Djolof et tchep'],['poisson','Poisson aux légumes'],['sauce','Les plats en sauce'],['claclo','Le claclo']].forEach(function(v){
+  reels.insertAdjacentHTML('beforeend','<button class="reel" aria-label="Lire la vidéo : '+v[1]+'"><video muted loop playsinline preload="none" poster="media/pub-'+v[0]+'.jpg" src="media/pub-'+v[0]+'.mp4"></video><span class="play"><svg viewBox="0 0 24 24" fill="#faeeda"><path d="M6 4l14 8-14 8z"/></svg></span></button>');
+});
+reels.addEventListener('click',function(e){
+  var b=e.target.closest('.reel');if(!b)return;var v=b.querySelector('video');
+  document.querySelectorAll('.reel video').forEach(function(o){if(o!==v){o.pause();o.parentNode.classList.remove('on');}});
+  if(v.paused){var p=v.play();if(p&&p.catch)p.catch(function(){});b.classList.add('on');}else{v.pause();b.classList.remove('on');}
+});
+
+/* apparition au défilement */
+if('IntersectionObserver' in window){
+  var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('vu');io.unobserve(en.target);}});},{rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.rev').forEach(function(el){io.observe(el);});
+}else{document.querySelectorAll('.rev').forEach(function(el){el.classList.add('vu');});}
+</script>
+</body>
+</html>
